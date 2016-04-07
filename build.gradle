@@ -1,0 +1,29 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+eclipse {
+  jdt {
+    sourceCompatibility = 1.7
+    targetCompatibility = 1.7
+  }
+}
+
+repositories {
+  mavenCentral()
+  maven {
+     url "http://central.maven.org/maven2"
+  }
+  maven {
+     url "https://repository.cloudera.com/artifactory/cloudera-repos"
+  }
+}
+
+dependencies {
+    compile 'org.apache.hadoop:hadoop-common:2.7.0'
+    compile 'org.apache.hadoop:hadoop-hdfs:2.7.0'
+    compile 'org.apache.hadoop:hadoop-mapreduce-client-common:2.7.0'
+    compile 'org.apache.hive:hive-jdbc:2.0.0'
+    compile 'org.apache.hbase:hbase-client:0.98.2-hadoop2'
+    compile 'org.apache.hbase:hbase-common:0.98.2-hadoop2'
+    compile 'org.apache.hbase:hbase-server:0.98.2-hadoop2'
+}
