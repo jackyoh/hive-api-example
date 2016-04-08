@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 import java.util.Map.Entry;
 
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.hive.conf.HiveConf;
 import org.apache.hadoop.util.StringUtils;
 import org.junit.Test;
 
@@ -31,5 +32,10 @@ public class ConfigurationTest {
 			System.out.println(entry.getKey() + "    " + StringUtils.getStringCollection(entry.getValue()));
 		}*/		
 	}
-	
+	@Test
+	public void testDoAs(){
+		HiveConf hiveConf = new HiveConf();
+		String doAs = hiveConf.get("hive.server2.enable.doAs");
+		System.out.println(doAs);
+	}
 }
