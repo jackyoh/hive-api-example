@@ -1,0 +1,32 @@
+<configuration>
+ <property>
+    <name>javax.jdo.option.ConnectionURL</name>
+    <value>jdbc:mysql://192.168.1.215/metastore_db2</value>
+ </property>
+
+ <property>
+     <name>javax.jdo.option.ConnectionDriverName</name>
+     <value>com.mysql.jdbc.Driver</value>
+ </property>
+
+ <property>
+     <name>javax.jdo.option.ConnectionUserName</name>
+     <value>root</value>
+ </property>
+
+ <property>
+     <name>javax.jdo.option.ConnectionPassword</name>
+     <value>123456</value>
+ </property>
+
+ <property>
+     <name>fs.default.name</name>
+     <value>hdfs://centos:9000</value>
+ </property>
+
+ <property>
+     <name>ipc.client.fallback-to-simple-auth-allowed</name>
+     <value>true</value>
+ </property>
+ 
+</configuration>
