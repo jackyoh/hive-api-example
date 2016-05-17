@@ -15,28 +15,25 @@ import org.apache.hadoop.hive.ql.session.SessionState;
 public class HiveSparkDriverMain {
 	
 	public static void main(String args[]) throws Exception{
-		
 		    CliSessionState ss = new CliSessionState(new HiveConf(SessionState.class));
 	        HiveConf hiveConf = ss.getConf();
 	        //HDFS
-	        hiveConf.set("fs.default.name", "hdfs://centos:9000");
+	        hiveConf.set("fs.default.name", "hdfs://docker-server-a1:9000");
 	        
 	        //YARN
-	        hiveConf.set("yarn.resourcemanager.address", "centos:8032");
-	        hiveConf.set("yarn.resourcemanager.scheduler.address", "centos:8030");
-	        hiveConf.set("yarn.resourcemanager.resource-tracker.address", "centos:8031");
-	        hiveConf.set("yarn.resourcemanager.admin.address", "centos:8033");
+	        hiveConf.set("yarn.resourcemanager.address", "docker-server-a1:8032");
+	        hiveConf.set("yarn.resourcemanager.scheduler.address", "docker-server-a1:8030");
+	        hiveConf.set("yarn.resourcemanager.resource-tracker.address", "docker-server-a1:8031");
+	        hiveConf.set("yarn.resourcemanager.admin.address", "docker-server-a1:8033");
 	        hiveConf.set("mapreduce.framework.name", "yarn");
-	        //hiveConf.set("mapreduce.johistory.address", "hadoop21:10020");
-	        hiveConf.set("yarn.nodemanager.aux-services", "mapreduce_shuffle");
 	        
 	        //SPARK
 	        hiveConf.set("hive.execution.engine", "spark");
-	        hiveConf.set("spark.home", "/opt/spark-1.6.0-bin-hadoop2.6");
-	        hiveConf.set("spark.yarn.jar", "hdfs://centos:9000/spark-assembly-1.6.0-hadoop2.6.0.jar");
+	        hiveConf.set("spark.home", "/opt/spark-1.4.1-bin-hadoop2.6");
+	        hiveConf.set("spark.yarn.jar", "hdfs://docker-server-a1:9000/spark-assembly-1.4.1-hadoop2.6.0.jar");
 	     
 	        //HIVE METASTORE
-	        hiveConf.set("javax.jdo.option.ConnectionURL", "jdbc:mysql://192.168.1.215:3306/metastore_db2");
+	        hiveConf.set("javax.jdo.option.ConnectionURL", "jdbc:mysql://192.168.1.170:3306/metastore_db");
 	        hiveConf.set("javax.jdo.option.ConnectionDriverName", "com.mysql.jdbc.Driver");
 	        hiveConf.set("javax.jdo.option.ConnectionUserName", "root");
 	        hiveConf.set("javax.jdo.option.ConnectionPassword", "123456");
@@ -44,12 +41,12 @@ public class HiveSparkDriverMain {
 	        
 	        hiveConf.set("hive.spark.client.server.connect.timeout", "10000000");
 
-	      //  hiveConf.set("spark.master", "local");
+	        hiveConf.set("spark.master", "yarn-cluster");
 	        
 	        SessionState.start(ss);
 
 	        Driver driver = new Driver(hiveConf);
-	        CommandProcessorResponse res = driver.run("SELECT count(column1) FROM table1");
+	        CommandProcessorResponse res = driver.run("SELECT count(column1)+count(column1) FROM table1");
 	        
 	        System.out.println("Response Code:" + res.getResponseCode());
 	        System.out.println("Error Message:" + res.getErrorMessage());

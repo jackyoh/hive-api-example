@@ -11,14 +11,14 @@ public class HiveServer2JDBCMain {
 		//hive.server2.thrift.port
 		
 		Class.forName("org.apache.hive.jdbc.HiveDriver");
-		Connection conn = DriverManager.getConnection("jdbc:hive2://192.168.1.183:10000");
+		Connection conn = DriverManager.getConnection("jdbc:hive2://192.168.1.170:10000");
 		
 		Statement stmt = conn.createStatement();
-		ResultSet resultSet = stmt.executeQuery("select * from table1");
+		ResultSet resultSet = stmt.executeQuery("select column1,column2 from table1 where column1 like '%a'");
 		
 		while(resultSet.next()){
-			System.out.println(resultSet.getString(1) + "    " + resultSet.getString(2));
-			
+			//System.out.println(resultSet.getString(1) + "    " + resultSet.getString(2));
+			System.out.println(resultSet.getString(1));
 		}
 		conn.close();
 	}

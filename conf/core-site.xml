@@ -20,7 +20,7 @@
 
   <property>
      <name>fs.defaultFS</name>
-     <value>hdfs://centos:9000</value>
+     <value>hdfs://docker-server-a1:9000</value>
   </property>
 
   <property>
