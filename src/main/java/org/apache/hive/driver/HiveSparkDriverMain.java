@@ -46,7 +46,8 @@ public class HiveSparkDriverMain {
 	        SessionState.start(ss);
 
 	        Driver driver = new Driver(hiveConf);
-	        CommandProcessorResponse res = driver.run("SELECT count(column1)+count(column1) FROM table1");
+	        //CommandProcessorResponse res = driver.run("SELECT count(column1)+count(column1) FROM table1");
+	        CommandProcessorResponse res = driver.run("SELECT table1.column1 FROM table1 inner join table2 on table1.column1=table2.column1");
 	        
 	        System.out.println("Response Code:" + res.getResponseCode());
 	        System.out.println("Error Message:" + res.getErrorMessage());
