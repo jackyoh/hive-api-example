@@ -18,19 +18,19 @@ public class HiveSparkDriverMain {
 		    CliSessionState ss = new CliSessionState(new HiveConf(SessionState.class));
 	        HiveConf hiveConf = ss.getConf();
 	        //HDFS
-	        hiveConf.set("fs.default.name", "hdfs://docker-server-a1:9000");
+	        hiveConf.set("fs.default.name", "hdfs://apache-server-a1:9000");
 	        
 	        //YARN
-	        hiveConf.set("yarn.resourcemanager.address", "docker-server-a1:8032");
-	        hiveConf.set("yarn.resourcemanager.scheduler.address", "docker-server-a1:8030");
-	        hiveConf.set("yarn.resourcemanager.resource-tracker.address", "docker-server-a1:8031");
-	        hiveConf.set("yarn.resourcemanager.admin.address", "docker-server-a1:8033");
+	        hiveConf.set("yarn.resourcemanager.address", "apache-server-a1:8032");
+	        hiveConf.set("yarn.resourcemanager.scheduler.address", "apache-server-a1:8030");
+	        hiveConf.set("yarn.resourcemanager.resource-tracker.address", "apache-server-a1:8031");
+	        hiveConf.set("yarn.resourcemanager.admin.address", "apache-server-a1:8033");
 	        hiveConf.set("mapreduce.framework.name", "yarn");
 	        
 	        //SPARK
 	        hiveConf.set("hive.execution.engine", "spark");
 	        hiveConf.set("spark.home", "/opt/spark-1.4.1-bin-hadoop2.6");
-	        hiveConf.set("spark.yarn.jar", "hdfs://docker-server-a1:9000/spark-assembly-1.4.1-hadoop2.6.0.jar");
+	        hiveConf.set("spark.yarn.jar", "hdfs://apache-server-a1:9000/spark-assembly-1.4.1-hadoop2.6.0.jar");
 	     
 	        //HIVE METASTORE
 	        hiveConf.set("javax.jdo.option.ConnectionURL", "jdbc:mysql://192.168.1.170:3306/metastore_db");
@@ -47,7 +47,8 @@ public class HiveSparkDriverMain {
 
 	        Driver driver = new Driver(hiveConf);
 	        //CommandProcessorResponse res = driver.run("SELECT count(column1)+count(column1) FROM table1");
-	        CommandProcessorResponse res = driver.run("SELECT table1.column1 FROM table1 inner join table2 on table1.column1=table2.column1");
+	        //CommandProcessorResponse res = driver.run("SELECT table1.column1 FROM table1 inner join table2 on table1.column1=table2.column1");
+	        CommandProcessorResponse res = driver.run("SELECT column1 FROM table1 GROUP BY column1");
 	        
 	        System.out.println("Response Code:" + res.getResponseCode());
 	        System.out.println("Error Message:" + res.getErrorMessage());
