@@ -7,7 +7,7 @@ import org.apache.hadoop.fs.Path;
 import org.junit.Test;
 
 public class FileSystemPathInfoTest {
-	@Test
+	//@Test
 	public void testFileSystePathInfo(){
 		Configuration config = new Configuration();
 		config.set("fs.default.name", "hdfs://centos:9000");

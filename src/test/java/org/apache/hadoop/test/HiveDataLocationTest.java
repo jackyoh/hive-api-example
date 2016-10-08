@@ -19,7 +19,8 @@ public class HiveDataLocationTest {
 
 	
 	//Table(tableName:table1, dbName:default, owner:root, createTime:1460029222, lastAccessTime:0, retention:0, sd:StorageDescriptor(cols:[FieldSchema(name:column1, type:string, comment:null), FieldSchema(name:column2, type:string, comment:null)], location:hdfs://centos:9000/user/hive/warehouse/table1, inputFormat:org.apache.hadoop.mapred.TextInputFormat, outputFormat:org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat, compressed:false, numBuckets:-1, serdeInfo:SerDeInfo(name:null, serializationLib:org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe, parameters:{serialization.format=1}), bucketCols:[], sortCols:[], parameters:{}, skewedInfo:SkewedInfo(skewedColNames:[], skewedColValues:[], skewedColValueLocationMaps:{}), storedAsSubDirectories:false), partitionKeys:[], parameters:{numFiles=1, transient_lastDdlTime=1460029337, totalSize=30}, viewOriginalText:null, viewExpandedText:null, tableType:MANAGED_TABLE)
-	@Test
+        //@Ignore
+	//@Test
 	public void testFileLocationType() throws Exception{
 		
 		Class.forName("org.apache.hive.jdbc.HiveDriver");
