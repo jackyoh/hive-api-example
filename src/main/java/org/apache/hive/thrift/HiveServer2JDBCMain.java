@@ -9,7 +9,7 @@ public class HiveServer2JDBCMain {
 	
 	public static void main(String args[]) throws Exception{
 		//hive.server2.thrift.port
-		System.out.println("Hive JDBC TEST");		
+		System.out.println("Hive JDBC TEST11111");		
 		Class.forName("org.apache.hive.jdbc.HiveDriver");
 		Connection conn = DriverManager.getConnection("jdbc:hive2://192.168.1.170:10000");
 		
