@@ -14,6 +14,7 @@ public class FileSystemPathInfo {
 	}
 	
 	public String getFileType(Path path){
+		System.out.println("aaaa");
 		try {
 			FileSystem fs = FileSystem.get(config);
 			FileStatus status = fs.getFileStatus(path);
